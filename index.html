@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>تقييم التجربة التدريبية</title>
+<style>
+  :root{
+    --green:#075b50;
+    --green-dark:#06483f;
+    --gold:#d9a900;
+    --text:#1f2523;
+    --muted:#66706d;
+    --bg:#f6f8f7;
+    --card:#ffffff;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;width:100%;height:100%;overflow:hidden}
+  body{
+    font-family:"Tahoma","Arial",sans-serif;
+    background:linear-gradient(180deg,#ffffff 0%,var(--bg) 100%);
+    color:var(--text);
+  }
+  .screen{
+    width:100vw;height:100vh;min-height:100vh;
+    display:flex;flex-direction:column;align-items:center;
+    padding:50px 42px 34px;
+    position:relative;
+  }
+  .top-line{
+    width:100%;max-width:850px;height:8px;border-radius:8px;
+    background:var(--green);margin-bottom:34px;
+  }
+  .brand{display:flex;align-items:center;justify-content:center;width:100%}
+  .logos-row{display:flex;align-items:center;justify-content:center;gap:34px;width:100%}
+  .brand img.training{width:min(43vw,330px);height:190px;object-fit:contain}
+  .brand img.security{width:150px;height:150px;object-fit:contain}
+  .logo-divider{width:2px;height:105px;background:#dfe5e3}
+  .divider{width:72%;max-width:620px;height:2px;background:#dfe5e3;margin:25px 0 42px}
+  h1{
+    font-size:clamp(42px,5vw,70px);margin:0;text-align:center;
+    color:var(--green-dark);font-weight:800;line-height:1.25;
+  }
+  .subtitle{
+    font-size:clamp(22px,2.7vw,34px);color:var(--muted);
+    text-align:center;line-height:1.7;margin:18px 0 54px;
+  }
+  .choices{
+    width:100%;max-width:980px;display:grid;
+    grid-template-columns:repeat(3,1fr);gap:28px;
+    direction:ltr;
+  }
+  .choice{
+    border:2px solid #e1e6e4;background:var(--card);
+    border-radius:32px;min-height:260px;padding:24px;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 10px 28px rgba(0,0,0,.065);
+    cursor:pointer;touch-action:manipulation;
+    transition:transform .12s ease,box-shadow .12s ease,border-color .12s ease,background .12s ease;
+  }
+  .choice:active{transform:scale(.97);box-shadow:0 4px 14px rgba(0,0,0,.08)}
+  .choice:focus-visible{outline:4px solid rgba(7,91,80,.18);outline-offset:4px}
+  .emoji{width:clamp(145px,18vw,210px);height:clamp(145px,18vw,210px);line-height:1;flex:none}
+  .face-icon svg{width:100%;height:100%;fill:none;stroke:var(--green-dark);stroke-width:7;stroke-linecap:round;stroke-linejoin:round}
+  .face-icon .eye{fill:var(--green-dark);stroke:none}
+  .choice.neutral .face-icon svg{stroke:#756d3f}
+  .choice.neutral .face-icon .eye{fill:#756d3f}
+  .choice.bad .face-icon svg{stroke:#7d3d35}
+  .choice.bad .face-icon .eye{fill:#7d3d35}
+  .choice.good:hover,.choice.good:focus{border-color:#4d9a72}
+  .choice.neutral:hover,.choice.neutral:focus{border-color:#a99b55}
+  .choice.bad:hover,.choice.bad:focus{border-color:#b66b62}
+  .footer{
+    margin-top:auto;color:#8a9490;font-size:18px;text-align:center;padding-top:28px
+  }
+  .success{
+    position:fixed;inset:0;background:rgba(255,255,255,.97);
+    display:none;align-items:center;justify-content:center;flex-direction:column;
+    z-index:10;text-align:center;padding:40px;
+  }
+  .success.show{display:flex}
+  .success-icon{font-size:125px;margin-bottom:20px}
+  .success h2{font-size:clamp(42px,5vw,66px);color:var(--green-dark);margin:0 0 18px}
+  .success p{font-size:clamp(25px,3vw,38px);color:var(--muted);margin:0}
+  @media (max-height:1500px){
+    .screen{padding-top:28px}
+    .top-line{margin-bottom:18px}
+    .brand img.training{width:280px;height:145px}
+    .brand img.security{width:105px;height:105px}
+    .logo-divider{height:80px}
+    .divider{margin:16px 0 24px}
+    .subtitle{margin-bottom:28px}
+    .choices{max-width:900px;gap:20px}
+    .choice{min-height:220px;padding:16px}
+    .emoji{width:clamp(125px,15vw,175px);height:clamp(125px,15vw,175px)}
+  }
+
+  @media (max-width:650px){
+    .screen{padding-left:18px;padding-right:18px}
+    .logos-row{gap:14px}
+    .brand img.training{width:210px;height:110px}
+    .brand img.security{width:82px;height:82px}
+    .logo-divider{height:62px}
+    .choices{gap:10px}
+    .choice{min-height:165px;border-radius:24px}
+    .emoji{width:105px;height:105px}
+  }
+</style>
+</head>
+<body>
+<main class="screen">
+  <div class="top-line"></div>
+
+  <section class="brand" aria-label="هوية الجهة">
+    <div class="logos-row">
+      <img class="security" src="logo_security.png" alt="الأمن العام">
+      <div class="logo-divider"></div>
+      <img class="training" src="logo_training.png" alt="مدينة تدريب الأمن العام بالمنطقة الشرقية">
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <h1>تقييم التجربة التدريبية</h1>
+  <p class="subtitle">نأمل مشاركتكم رأيكم، ويسهم تقييمكم في تطوير وتحسين العملية التدريبية.</p>
+
+  <section class="choices">
+    <button class="choice good" onclick="submitRating('راضي')" aria-label="راضي">
+      <span class="emoji face-icon" aria-hidden="true">
+<svg viewBox="0 0 160 160"><circle cx="80" cy="80" r="64"/><circle class="eye" cx="57" cy="64" r="5"/><circle class="eye" cx="103" cy="64" r="5"/><path d="M50 92 Q80 120 110 92"/></svg>
+      </span>
+    </button>
+
+    <button class="choice neutral" onclick="submitRating('محايد')" aria-label="محايد">
+      <span class="emoji face-icon" aria-hidden="true">
+<svg viewBox="0 0 160 160"><circle cx="80" cy="80" r="64"/><circle class="eye" cx="57" cy="64" r="5"/><circle class="eye" cx="103" cy="64" r="5"/><path d="M50 100 L110 100"/></svg>
+      </span>
+    </button>
+
+    <button class="choice bad" onclick="submitRating('غير راضي')" aria-label="غير راضي">
+      <span class="emoji face-icon" aria-hidden="true">
+<svg viewBox="0 0 160 160"><circle cx="80" cy="80" r="64"/><circle class="eye" cx="57" cy="64" r="5"/><circle class="eye" cx="103" cy="64" r="5"/><path d="M50 112 Q80 84 110 112"/></svg>
+      </span>
+    </button>
+  </section>
+
+</main>
+
+<!--
+  يتم إرسال التقييم إلى Google Apps Script باستخدام نموذج مخفي، لتجنب مشاكل CORS.
+  ضع رابط Web App الخاص بك في APP_SCRIPT_URL.
+-->
+<form id="ratingForm" method="POST" target="submitFrame">
+  <input type="hidden" name="rating" id="ratingInput">
+</form>
+<iframe name="submitFrame" id="submitFrame" style="display:none"></iframe>
+
+<section class="success" id="success">
+  <div class="success-icon">✓</div>
+  <h2>شكرًا لكم</h2>
+  <p>تم تسجيل تقييمكم بنجاح</p>
+</section>
+
+<script>
+const APP_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxTwvyGwHgsOqDnMeysGZG23UIWe24tnwwLkdKVOP86r5vtDrSaK8HH0JgDr0yur8l8/exec";
+const form = document.getElementById("ratingForm");
+const ratingInput = document.getElementById("ratingInput");
+const success = document.getElementById("success");
+
+function submitRating(rating){
+  ratingInput.value = rating;
+
+  if(APP_SCRIPT_URL.startsWith("http")){
+    form.action = APP_SCRIPT_URL;
+    form.submit();
+  }
+
+  success.classList.add("show");
+
+  setTimeout(() => {
+    success.classList.remove("show");
+  }, 2200);
+}
+</script>
+</body>
+</html>
