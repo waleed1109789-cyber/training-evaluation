@@ -95,13 +95,13 @@
     margin:25px 0 42px;
   }
 
-  /* نزول قسم التقييم لأسفل */
+  /* نزول قسم التقييم 80 بكسل إضافية */
   .evaluation-section{
     width:100%;
     display:flex;
     flex-direction:column;
     align-items:center;
-    margin-top:120px;
+    margin-top:230px;
   }
 
   h1{
@@ -275,7 +275,7 @@
     }
 
     .evaluation-section{
-      margin-top:75px;
+      margin-top:180px;
     }
 
     .top-line{
@@ -328,7 +328,7 @@
     }
 
     .evaluation-section{
-      margin-top:55px;
+      margin-top:150px;
     }
 
     .logos-row{
@@ -380,26 +380,17 @@
   <section class="brand" aria-label="هوية الجهة">
     <div class="logos-row">
 
-      <img
-        class="security"
-        src="logo_security.png"
-        alt="الأمن العام"
-      >
+      <img class="security" src="logo_security.png" alt="الأمن العام">
 
       <div class="logo-divider"></div>
 
-      <img
-        class="training"
-        src="logo_training.png"
-        alt="مدينة تدريب الأمن العام بالمنطقة الشرقية"
-      >
+      <img class="training" src="logo_training.png" alt="مدينة تدريب الأمن العام بالمنطقة الشرقية">
 
     </div>
   </section>
 
   <div class="divider"></div>
 
-  <!-- القسم الذي تم إنزاله -->
   <section class="evaluation-section">
 
     <h1>تقييم التجربة التدريبية</h1>
@@ -456,20 +447,12 @@
   <input type="hidden" name="rating" id="ratingInput">
 </form>
 
-<iframe
-  name="submitFrame"
-  id="submitFrame"
-  style="display:none">
-</iframe>
+<iframe name="submitFrame" id="submitFrame" style="display:none"></iframe>
 
 <section class="success" id="success">
-
   <div class="success-icon">✓</div>
-
   <h2>شكرًا لك</h2>
-
   <p>تم تسجيل تقييمكم بنجاح</p>
-
 </section>
 
 <script>
