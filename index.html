@@ -95,6 +95,15 @@
     margin:25px 0 42px;
   }
 
+  /* نزول قسم التقييم لأسفل */
+  .evaluation-section{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    margin-top:120px;
+  }
+
   h1{
     font-size:clamp(42px,5vw,70px);
     margin:0;
@@ -127,17 +136,14 @@
     border-radius:32px;
     min-height:260px;
     padding:24px;
-
     display:flex;
     flex-direction:column;
     align-items:center;
     justify-content:center;
     gap:12px;
-
     box-shadow:0 10px 28px rgba(0,0,0,.065);
     cursor:pointer;
     touch-action:manipulation;
-
     transition:
       transform .12s ease,
       box-shadow .12s ease,
@@ -193,8 +199,6 @@
     fill:#7d3d35;
   }
 
-  /* الكلمات تحت الوجوه */
-
   .rating-label{
     font-size:clamp(22px,2.3vw,30px);
     font-weight:700;
@@ -228,14 +232,6 @@
   .choice.bad:hover,
   .choice.bad:focus{
     border-color:#b66b62;
-  }
-
-  .footer{
-    margin-top:auto;
-    color:#8a9490;
-    font-size:18px;
-    text-align:center;
-    padding-top:28px;
   }
 
   .success{
@@ -276,6 +272,10 @@
 
     .screen{
       padding-top:28px;
+    }
+
+    .evaluation-section{
+      margin-top:75px;
     }
 
     .top-line{
@@ -327,6 +327,10 @@
       padding-right:18px;
     }
 
+    .evaluation-section{
+      margin-top:55px;
+    }
+
     .logos-row{
       gap:14px;
     }
@@ -364,7 +368,6 @@
       font-size:18px;
     }
   }
-
 </style>
 </head>
 
@@ -396,215 +399,101 @@
 
   <div class="divider"></div>
 
-  <h1>تقييم التجربة التدريبية</h1>
+  <!-- القسم الذي تم إنزاله -->
+  <section class="evaluation-section">
 
-  <p class="subtitle">
-    نأمل مشاركتكم رأيكم، ويسهم تقييمكم في تطوير وتحسين العملية التدريبية.
-  </p>
+    <h1>تقييم التجربة التدريبية</h1>
 
+    <p class="subtitle">
+      نأمل مشاركتكم رأيكم، ويسهم تقييمكم في تطوير وتحسين العملية التدريبية.
+    </p>
 
-  <section class="choices">
+    <section class="choices">
 
+      <button class="choice good" onclick="submitRating('راضي')" aria-label="راضي">
+        <span class="emoji face-icon" aria-hidden="true">
+          <svg viewBox="0 0 160 160">
+            <circle cx="80" cy="80" r="64"/>
+            <circle class="eye" cx="57" cy="64" r="5"/>
+            <circle class="eye" cx="103" cy="64" r="5"/>
+            <path d="M50 92 Q80 120 110 92"/>
+          </svg>
+        </span>
+        <span class="rating-label">راضي</span>
+      </button>
 
-    <!-- راضي -->
+      <button class="choice neutral" onclick="submitRating('محايد')" aria-label="محايد">
+        <span class="emoji face-icon" aria-hidden="true">
+          <svg viewBox="0 0 160 160">
+            <circle cx="80" cy="80" r="64"/>
+            <circle class="eye" cx="57" cy="64" r="5"/>
+            <circle class="eye" cx="103" cy="64" r="5"/>
+            <path d="M50 100 L110 100"/>
+          </svg>
+        </span>
+        <span class="rating-label">محايد</span>
+      </button>
 
-    <button
-      class="choice good"
-      onclick="submitRating('راضي')"
-      aria-label="راضي"
-    >
+      <button class="choice bad" onclick="submitRating('غير راضي')" aria-label="غير راضي">
+        <span class="emoji face-icon" aria-hidden="true">
+          <svg viewBox="0 0 160 160">
+            <circle cx="80" cy="80" r="64"/>
+            <circle class="eye" cx="57" cy="64" r="5"/>
+            <circle class="eye" cx="103" cy="64" r="5"/>
+            <path d="M50 112 Q80 84 110 112"/>
+          </svg>
+        </span>
+        <span class="rating-label">غير راضي</span>
+      </button>
 
-      <span class="emoji face-icon" aria-hidden="true">
-
-        <svg viewBox="0 0 160 160">
-
-          <circle cx="80" cy="80" r="64"/>
-
-          <circle
-            class="eye"
-            cx="57"
-            cy="64"
-            r="5"
-          />
-
-          <circle
-            class="eye"
-            cx="103"
-            cy="64"
-            r="5"
-          />
-
-          <path d="M50 92 Q80 120 110 92"/>
-
-        </svg>
-
-      </span>
-
-      <span class="rating-label">
-        راضي
-      </span>
-
-    </button>
-
-
-    <!-- محايد -->
-
-    <button
-      class="choice neutral"
-      onclick="submitRating('محايد')"
-      aria-label="محايد"
-    >
-
-      <span class="emoji face-icon" aria-hidden="true">
-
-        <svg viewBox="0 0 160 160">
-
-          <circle cx="80" cy="80" r="64"/>
-
-          <circle
-            class="eye"
-            cx="57"
-            cy="64"
-            r="5"
-          />
-
-          <circle
-            class="eye"
-            cx="103"
-            cy="64"
-            r="5"
-          />
-
-          <path d="M50 100 L110 100"/>
-
-        </svg>
-
-      </span>
-
-      <span class="rating-label">
-        محايد
-      </span>
-
-    </button>
-
-
-    <!-- غير راضي -->
-
-    <button
-      class="choice bad"
-      onclick="submitRating('غير راضي')"
-      aria-label="غير راضي"
-    >
-
-      <span class="emoji face-icon" aria-hidden="true">
-
-        <svg viewBox="0 0 160 160">
-
-          <circle cx="80" cy="80" r="64"/>
-
-          <circle
-            class="eye"
-            cx="57"
-            cy="64"
-            r="5"
-          />
-
-          <circle
-            class="eye"
-            cx="103"
-            cy="64"
-            r="5"
-          />
-
-          <path d="M50 112 Q80 84 110 112"/>
-
-        </svg>
-
-      </span>
-
-      <span class="rating-label">
-        غير راضي
-      </span>
-
-    </button>
+    </section>
 
   </section>
 
 </main>
 
-
-<form
-  id="ratingForm"
-  method="POST"
-  target="submitFrame"
->
-
-  <input
-    type="hidden"
-    name="rating"
-    id="ratingInput"
-  >
-
+<form id="ratingForm" method="POST" target="submitFrame">
+  <input type="hidden" name="rating" id="ratingInput">
 </form>
 
 <iframe
   name="submitFrame"
   id="submitFrame"
-  style="display:none"
-></iframe>
+  style="display:none">
+</iframe>
 
+<section class="success" id="success">
 
-<section
-  class="success"
-  id="success"
->
-
-  <div class="success-icon">
-    ✓
-  </div>
+  <div class="success-icon">✓</div>
 
   <h2>شكرًا لك</h2>
 
-  <p>
-    تم تسجيل تقييمكم بنجاح
-  </p>
+  <p>تم تسجيل تقييمكم بنجاح</p>
 
 </section>
-
 
 <script>
 
 const APP_SCRIPT_URL =
 "https://script.google.com/macros/s/AKfycbxTwvyGwHgsOqDnMeysGZG23UIWe24tnwwLkdKVOP86r5vtDrSaK8HH0JgDr0yur8l8/exec";
 
-const form =
-document.getElementById("ratingForm");
-
-const ratingInput =
-document.getElementById("ratingInput");
-
-const success =
-document.getElementById("success");
-
+const form = document.getElementById("ratingForm");
+const ratingInput = document.getElementById("ratingInput");
+const success = document.getElementById("success");
 
 function submitRating(rating){
 
   ratingInput.value = rating;
 
   if(APP_SCRIPT_URL.startsWith("http")){
-
     form.action = APP_SCRIPT_URL;
-
     form.submit();
-
   }
 
   success.classList.add("show");
 
   setTimeout(() => {
-
     success.classList.remove("show");
-
   }, 2200);
 }
 
