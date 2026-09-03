@@ -95,17 +95,13 @@
     margin:25px 0 42px;
   }
 
-  /* قسم التقييم في منتصف الشاشة فعليًا */
+  /* نزول قسم التقييم لأسفل */
   .evaluation-section{
     width:100%;
     display:flex;
     flex-direction:column;
     align-items:center;
-
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%, -50%);
+    margin-top:120px;
   }
 
   h1{
@@ -278,6 +274,10 @@
       padding-top:28px;
     }
 
+    .evaluation-section{
+      margin-top:75px;
+    }
+
     .top-line{
       margin-bottom:18px;
     }
@@ -325,6 +325,10 @@
     .screen{
       padding-left:18px;
       padding-right:18px;
+    }
+
+    .evaluation-section{
+      margin-top:55px;
     }
 
     .logos-row{
@@ -376,17 +380,26 @@
   <section class="brand" aria-label="هوية الجهة">
     <div class="logos-row">
 
-      <img class="security" src="logo_security.png" alt="الأمن العام">
+      <img
+        class="security"
+        src="logo_security.png"
+        alt="الأمن العام"
+      >
 
       <div class="logo-divider"></div>
 
-      <img class="training" src="logo_training.png" alt="مدينة تدريب الأمن العام بالمنطقة الشرقية">
+      <img
+        class="training"
+        src="logo_training.png"
+        alt="مدينة تدريب الأمن العام بالمنطقة الشرقية"
+      >
 
     </div>
   </section>
 
   <div class="divider"></div>
 
+  <!-- القسم الذي تم إنزاله -->
   <section class="evaluation-section">
 
     <h1>تقييم التجربة التدريبية</h1>
@@ -443,12 +456,20 @@
   <input type="hidden" name="rating" id="ratingInput">
 </form>
 
-<iframe name="submitFrame" id="submitFrame" style="display:none"></iframe>
+<iframe
+  name="submitFrame"
+  id="submitFrame"
+  style="display:none">
+</iframe>
 
 <section class="success" id="success">
+
   <div class="success-icon">✓</div>
+
   <h2>شكرًا لك</h2>
+
   <p>تم تسجيل تقييمكم بنجاح</p>
+
 </section>
 
 <script>
