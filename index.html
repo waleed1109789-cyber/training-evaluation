@@ -95,7 +95,6 @@
     margin:25px 0 42px;
   }
 
-  /* رفع قسم التقييم */
   .evaluation-section{
     width:100%;
     display:flex;
@@ -121,7 +120,6 @@
     margin:18px 0 45px;
   }
 
-  /* تصغير مجموعة المربعات شوي */
   .choices{
     width:100%;
     max-width:900px;
@@ -160,6 +158,11 @@
   .choice:focus-visible{
     outline:4px solid rgba(7,91,80,.18);
     outline-offset:4px;
+  }
+
+  .choice.disabled{
+    pointer-events:none;
+    opacity:.65;
   }
 
   .emoji{
@@ -255,6 +258,7 @@
   .success-icon{
     font-size:125px;
     margin-bottom:20px;
+    color:var(--green-dark);
   }
 
   .success h2{
@@ -411,7 +415,11 @@
 
     <section class="choices">
 
-      <button class="choice good" onclick="submitRating('راضي')" aria-label="راضي">
+      <button
+        class="choice good"
+        onclick="submitRating('راضي')"
+        aria-label="راضي"
+      >
         <span class="emoji face-icon" aria-hidden="true">
           <svg viewBox="0 0 160 160">
             <circle cx="80" cy="80" r="64"/>
@@ -423,7 +431,11 @@
         <span class="rating-label">راضي</span>
       </button>
 
-      <button class="choice neutral" onclick="submitRating('محايد')" aria-label="محايد">
+      <button
+        class="choice neutral"
+        onclick="submitRating('محايد')"
+        aria-label="محايد"
+      >
         <span class="emoji face-icon" aria-hidden="true">
           <svg viewBox="0 0 160 160">
             <circle cx="80" cy="80" r="64"/>
@@ -435,7 +447,11 @@
         <span class="rating-label">محايد</span>
       </button>
 
-      <button class="choice bad" onclick="submitRating('غير راضي')" aria-label="غير راضي">
+      <button
+        class="choice bad"
+        onclick="submitRating('غير راضي')"
+        aria-label="غير راضي"
+      >
         <span class="emoji face-icon" aria-hidden="true">
           <svg viewBox="0 0 160 160">
             <circle cx="80" cy="80" r="64"/>
@@ -453,9 +469,19 @@
 
 </main>
 
-<form id="ratingForm" method="POST" target="submitFrame">
-  <input type="hidden" name="rating" id="ratingInput">
+
+<form
+  id="ratingForm"
+  method="POST"
+  target="submitFrame"
+>
+  <input
+    type="hidden"
+    name="rating"
+    id="ratingInput"
+  >
 </form>
+
 
 <iframe
   name="submitFrame"
@@ -463,7 +489,11 @@
   style="display:none">
 </iframe>
 
-<section class="success" id="success">
+
+<section
+  class="success"
+  id="success"
+>
 
   <div class="success-icon">✓</div>
 
@@ -473,29 +503,65 @@
 
 </section>
 
+
 <script>
 
 const APP_SCRIPT_URL =
-"https://script.google.com/macros/s/AKfycbxTwvyGwHgsOqDnMeysGZG23UIWe24tnwwLkdKVOP86r5vtDrSaK8HH0JgDr0yur8l8/exec";
+"https://script.google.com/macros/s/AKfycbwxo_676q8NOq7BJkOSqyQgOHIEJCVn60jkdi8g_2pv-yY-QWf3E_Vu-KLsXuJDk_O6/exec";
 
-const form = document.getElementById("ratingForm");
-const ratingInput = document.getElementById("ratingInput");
-const success = document.getElementById("success");
+
+const form =
+  document.getElementById("ratingForm");
+
+const ratingInput =
+  document.getElementById("ratingInput");
+
+const success =
+  document.getElementById("success");
+
+const buttons =
+  document.querySelectorAll(".choice");
+
+let sending = false;
+
 
 function submitRating(rating){
 
-  ratingInput.value = rating;
-
-  if(APP_SCRIPT_URL.startsWith("http")){
-    form.action = APP_SCRIPT_URL;
-    form.submit();
+  // منع الضغط المتكرر
+  if(sending){
+    return;
   }
 
+  sending = true;
+
+  buttons.forEach(button => {
+    button.classList.add("disabled");
+  });
+
+
+  ratingInput.value = rating;
+
+  form.action = APP_SCRIPT_URL;
+
+  form.submit();
+
+
+  // رسالة الشكر
   success.classList.add("show");
 
+
   setTimeout(() => {
+
     success.classList.remove("show");
+
+    sending = false;
+
+    buttons.forEach(button => {
+      button.classList.remove("disabled");
+    });
+
   }, 2200);
+
 }
 
 </script>
