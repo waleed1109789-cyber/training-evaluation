@@ -418,6 +418,46 @@
     }
   }
 
+
+  /* ===== توزيع أفضل على الشاشة الطولية =====
+     لا يغيّر مقاس أزرار التقييم */
+  @media (orientation: portrait) {
+    .screen{
+      height:100dvh;
+      min-height:100dvh;
+      padding:24px 42px 42px;
+      justify-content:space-between;
+    }
+
+    .top-line{
+      margin-bottom:0;
+      flex-shrink:0;
+    }
+
+    .brand{
+      flex-shrink:0;
+    }
+
+    .divider{
+      margin:0;
+      flex-shrink:0;
+    }
+
+    .evaluation-section{
+      flex:0 0 auto;
+      margin-top:0;
+      padding-bottom:clamp(28px,4vh,70px);
+      justify-content:flex-start;
+    }
+  }
+
+  @media (orientation: portrait) and (max-width:650px){
+    .screen{
+      padding-left:18px;
+      padding-right:18px;
+    }
+  }
+
 </style>
 </head>
 
