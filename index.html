@@ -375,23 +375,95 @@
     }
   }
 
-  /* توافق أفضل مع الشاشات الطولية بدون تغيير مقاسات العناصر */
-  @supports (height: 100dvh) {
+  /* ===== ترتيب شاشة العرض الطولية =====
+     يحافظ على مقاسات أزرار التقييم الأصلية ويضبط توزيع الصفحة فقط */
+  @media (orientation:portrait){
+
+    html, body{
+      width:100%;
+      height:100%;
+      overflow:hidden;
+    }
+
     .screen{
-      height:100dvh;
-      min-height:100dvh;
+      height:100vh;
+      min-height:100vh;
+      padding:34px 42px 34px;
+      justify-content:flex-start;
+    }
+
+    .top-line{
+      margin-bottom:26px;
+    }
+
+    .brand{
+      flex:none;
+    }
+
+    .logos-row{
+      gap:34px;
+    }
+
+    /* تثبيت مقاسات الشعارات الأصلية */
+    .brand img.training{
+      width:330px;
+      height:190px;
+    }
+
+    .brand img.security{
+      width:150px;
+      height:150px;
+    }
+
+    .logo-divider{
+      height:105px;
+    }
+
+    .divider{
+      margin:22px 0 0;
+    }
+
+    /* تنزيل قسم التقييم بشكل متوازن */
+    .evaluation-section{
+      margin-top:clamp(105px,10vh,165px);
+      padding:0;
+      flex:none;
+    }
+
+    /* تثبيت مقاسات الأزرار الأصلية */
+    .choices{
+      max-width:900px;
+      gap:22px;
+    }
+
+    .choice{
+      min-height:225px;
+      padding:18px;
+      border-radius:28px;
+      gap:10px;
+    }
+
+    .emoji{
+      width:clamp(125px,16vw,170px);
+      height:clamp(125px,16vw,170px);
+    }
+
+    .rating-label{
+      font-size:clamp(22px,2.3vw,30px);
+    }
+
+    .subtitle{
+      margin:18px 0 45px;
     }
   }
 
-
-  /* تنزيل قسم التقييم مسافة متوسطة بدون تغيير المقاسات */
-  .evaluation-section{
-    transform:translateY(70px);
-  }
-
-  @media (max-height:1500px){
-    .evaluation-section{
-      transform:translateY(45px);
+  /* دعم أفضل لمتصفحات الشاشات الحديثة */
+  @supports (height:100dvh){
+    @media (orientation:portrait){
+      .screen{
+        height:100dvh;
+        min-height:100dvh;
+      }
     }
   }
 
